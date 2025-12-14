@@ -43,13 +43,13 @@ class QAgent:
                 if done:
                     target = r
                 else:
-                    best_next = max(self.qTable[(s2, a2)]
-                                    for a2 in self.actions)
+                    best_next = max(self.qTable[(s2, a2)] for a2 in self.actions)
                     target = r + self.gamma * best_next
 
                 self.qTable[(s, action)] = (1 - self.alpha) * self.qTable[
                     (s, action)
                 ] + self.alpha * target
+                self.epsilon = max(self.epsilon_min, self.epsilon * self.epsilon_decay)
 
     def getMove(self, pos):
         maxQ = max(self.qTable[(pos, a)] for a in self.actions)
