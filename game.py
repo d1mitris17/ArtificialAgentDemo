@@ -1,3 +1,6 @@
+import random
+
+
 class Game:
     def __init__(self):
         self.grid = [[1, 0, 1], [0, 0, 0], [1, 0, 1]]
@@ -18,6 +21,9 @@ class Game:
             and self.pos[0] > 0
             and self.grid[self.pos[0] - 1][self.pos[1]] == 0
         ):
+            if random.random() < 0.1:
+                # 10% chance to slip and not move
+                return 0
             self.pos = (self.pos[0] - 1, self.pos[1])
             return -1
         elif (
@@ -25,6 +31,9 @@ class Game:
             and self.pos[0] < len(self.grid) - 1
             and self.grid[self.pos[0] + 1][self.pos[1]] == 0
         ):
+            if random.random() < 0.1:
+                # 10% chance to slip and not move
+                return 0
             self.pos = (self.pos[0] + 1, self.pos[1])
             return -1
         elif (
@@ -32,6 +41,9 @@ class Game:
             and self.pos[1] < len(self.grid[0]) - 1
             and self.grid[self.pos[0]][self.pos[1] + 1] == 0
         ):
+            if random.random() < 0.1:
+                # 10% chance to slip and not move
+                return 0
             self.pos = (self.pos[0], self.pos[1] + 1)
             return -1
         elif (
@@ -39,6 +51,9 @@ class Game:
             and self.pos[1] > 0
             and self.grid[self.pos[0]][self.pos[1] - 1] == 0
         ):
+            if random.random() < 0.1:
+                # 10% chance to slip and not move
+                return 0
             self.pos = (self.pos[0], self.pos[1] - 1)
             return -1
         else:
